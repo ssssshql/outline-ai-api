@@ -71,10 +71,18 @@ export class ChatService {
       {}
     );
 
+    console.log("Raw retrieved docs count:", retrievedDocs.length);
+    if (retrievedDocs.length > 0) {
+      console.log("Sample scores:", retrievedDocs.slice(0, 3).map(([, score]) => score));
+    }
+
     const scoreThreshold = settings.RAG_SCORE_THRESHOLD
-      ? settings.RAG_SCORE_THRESHOLD / 100
+      ? settings.RAG_SCORE_THRESHOLD
       : 0.4;
+    console.log("Score threshold:", scoreThreshold);
+    
     retrievedDocs = retrievedDocs.filter(([, score]) => score < scoreThreshold);
+    console.log("Filtered docs count:", retrievedDocs.length);
 
     const sources = retrievedDocs.map(([doc, score]) => ({
       content: doc.pageContent,
@@ -166,10 +174,18 @@ ${context}`,
       {}
     );
 
+    console.log("Raw retrieved docs count:", retrievedDocs.length);
+    if (retrievedDocs.length > 0) {
+      console.log("Sample scores:", retrievedDocs.slice(0, 3).map(([, score]) => score));
+    }
+
     const scoreThreshold = settings.RAG_SCORE_THRESHOLD
-      ? settings.RAG_SCORE_THRESHOLD / 100
+      ? settings.RAG_SCORE_THRESHOLD
       : 0.4;
+    console.log("Score threshold:", scoreThreshold);
+    
     retrievedDocs = retrievedDocs.filter(([, score]) => score < scoreThreshold);
+    console.log("Filtered docs count:", retrievedDocs.length);
 
     const sources = retrievedDocs.map(([doc, score]) => ({
       content: doc.pageContent,
