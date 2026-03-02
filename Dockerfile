@@ -6,7 +6,7 @@ COPY package*.json pnpm-lock.yaml ./
 COPY src ./src
 COPY tsconfig.json ./
 
-RUN npm install -g pnpm && \
+RUN npm install -g pnpm@8 && \
     pnpm install --frozen-lockfile && \
     pnpm run build
 
